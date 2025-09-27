@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Global Cart - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-black': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-crown text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-black text-luxury-black">Lâm Thúy - Test Cart</h1>
+                </div>
+
+                <!-- Cart Button -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="openCart()" class="relative p-2 text-gray-800 hover:text-luxury-gold transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-luxury-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black text-luxury-black mb-4">Test Global Cart System</h1>
+            <p class="text-lg text-gray-600">Kiểm tra chức năng giỏ hàng toàn cục</p>
+        </div>
+
+        <!-- Test Products -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=300&fit=crop" alt="Áo sơ mi" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Áo sơ mi nam cao cấp</h3>
+                <p class="text-gray-600 mb-4">Thiết kế hiện đại, chất liệu premium</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">2.500.000₫</span>
+                    <button onclick="addToCart(1, 'L', 'Trắng')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop" alt="Váy dạ hội" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Váy dạ hội sang trọng</h3>
+                <p class="text-gray-600 mb-4">Phong cách thanh lịch, quyến rũ</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">3.200.000₫</span>
+                    <button onclick="addToCart(2, 'M', 'Đen')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Áo thun" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Áo thun cao cấp</h3>
+                <p class="text-gray-600 mb-4">Chất liệu cotton 100%, thoáng mát</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">850.000₫</span>
+                    <button onclick="addToCart(3, 'XL', 'Xám')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 - Footwear -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Giày sneaker" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Giày sneaker cao cấp</h3>
+                <p class="text-gray-600 mb-4">Thoải mái, phong cách hiện đại</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">3.500.000₫</span>
+                    <button onclick="addToCart(101, '42', 'Trắng')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 5 - Perfume -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=300&fit=crop" alt="Nước hoa" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Nước hoa nam cao cấp</h3>
+                <p class="text-gray-600 mb-4">Hương thơm quyến rũ, bền lâu</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">1.800.000₫</span>
+                    <button onclick="addToCart(201, '100ml', 'Nam')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Test Buttons -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Test Functions</h3>
+                <div class="space-y-3">
+                    <button onclick="console.log('Cart Summary:', getCartSummary())" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Log Cart Summary
+                    </button>
+                    <button onclick="clearCart()" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                        <i class="fas fa-trash mr-2"></i>
+                        Clear Cart
+                    </button>
+                    <button onclick="openCart()" class="w-full bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Open Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="mt-12 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Test trên các trang khác</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-home mr-2"></i>
+                    Trang chủ
+                </a>
+                <a href="clothing.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-tshirt mr-2"></i>
+                    Quần áo
+                </a>
+                <a href="giay-dep.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-shoe-prints mr-2"></i>
+                    Giày dép
+                </a>
+                <a href="nuoc-hoa.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-spray-can mr-2"></i>
+                    Nước hoa
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        // Test cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test page loaded');
+            console.log('Cart functions available:', {
+                addToCart: typeof addToCart,
+                openCart: typeof openCart,
+                closeCart: typeof closeCart,
+                updateCartDisplay: typeof updateCartDisplay,
+                getCartSummary: typeof getCartSummary
+            });
+        });
+    </script>
+</body>
+</html>
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Global Cart - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-black': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-crown text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-black text-luxury-black">Lâm Thúy - Test Cart</h1>
+                </div>
+
+                <!-- Cart Button -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="openCart()" class="relative p-2 text-gray-800 hover:text-luxury-gold transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-luxury-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black text-luxury-black mb-4">Test Global Cart System</h1>
+            <p class="text-lg text-gray-600">Kiểm tra chức năng giỏ hàng toàn cục</p>
+        </div>
+
+        <!-- Test Products -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=300&fit=crop" alt="Áo sơ mi" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Áo sơ mi nam cao cấp</h3>
+                <p class="text-gray-600 mb-4">Thiết kế hiện đại, chất liệu premium</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">2.500.000₫</span>
+                    <button onclick="addToCart(1, 'L', 'Trắng')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop" alt="Váy dạ hội" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Váy dạ hội sang trọng</h3>
+                <p class="text-gray-600 mb-4">Phong cách thanh lịch, quyến rũ</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">3.200.000₫</span>
+                    <button onclick="addToCart(2, 'M', 'Đen')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Áo thun" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Áo thun cao cấp</h3>
+                <p class="text-gray-600 mb-4">Chất liệu cotton 100%, thoáng mát</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">850.000₫</span>
+                    <button onclick="addToCart(3, 'XL', 'Xám')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 - Footwear -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop" alt="Giày sneaker" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Giày sneaker cao cấp</h3>
+                <p class="text-gray-600 mb-4">Thoải mái, phong cách hiện đại</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">3.500.000₫</span>
+                    <button onclick="addToCart(101, '42', 'Trắng')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 5 - Perfume -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=300&fit=crop" alt="Nước hoa" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Nước hoa nam cao cấp</h3>
+                <p class="text-gray-600 mb-4">Hương thơm quyến rũ, bền lâu</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-black text-luxury-gold">1.800.000₫</span>
+                    <button onclick="addToCart(201, '100ml', 'Nam')" class="bg-luxury-gold text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Test Buttons -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Test Functions</h3>
+                <div class="space-y-3">
+                    <button onclick="console.log('Cart Summary:', getCartSummary())" class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Log Cart Summary
+                    </button>
+                    <button onclick="clearCart()" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                        <i class="fas fa-trash mr-2"></i>
+                        Clear Cart
+                    </button>
+                    <button onclick="openCart()" class="w-full bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Open Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="mt-12 text-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Test trên các trang khác</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-home mr-2"></i>
+                    Trang chủ
+                </a>
+                <a href="clothing.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-tshirt mr-2"></i>
+                    Quần áo
+                </a>
+                <a href="giay-dep.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-shoe-prints mr-2"></i>
+                    Giày dép
+                </a>
+                <a href="nuoc-hoa.html" class="bg-luxury-gold text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                    <i class="fas fa-spray-can mr-2"></i>
+                    Nước hoa
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        // Test cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test page loaded');
+            console.log('Cart functions available:', {
+                addToCart: typeof addToCart,
+                openCart: typeof openCart,
+                closeCart: typeof closeCart,
+                updateCartDisplay: typeof updateCartDisplay,
+                getCartSummary: typeof getCartSummary
+            });
+        });
+    </script>
+</body>
+</html>

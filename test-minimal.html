@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Minimal Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Test Minimal Cart</h1>
+    
+    <button onclick="testAdd()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+        Test Add to Cart
+    </button>
+    
+    <button onclick="openCart()" class="bg-green-500 text-white px-4 py-2 rounded mb-4">
+        Open Cart
+    </button>
+    
+    <div id="debug" class="mt-4 p-4 bg-gray-100 rounded">
+        <p>Cart loaded: <span id="cart-status">No</span></p>
+        <p>Cart items: <span id="cart-items">0</span></p>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4">Giỏ hàng</h2>
+                <div id="empty-cart" class="text-center py-8">
+                    <p>Giỏ hàng trống</p>
+                </div>
+                <div id="cart-items" class="space-y-2">
+                    <!-- Items here -->
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <p>Tổng: <span id="cart-total">0₫</span></p>
+                </div>
+                <button onclick="closeCart()" class="mt-4 w-full bg-gray-500 text-white py-2 rounded">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        function testAdd() {
+            console.log('Testing addToCart...');
+            if (typeof addToCart === 'function') {
+                addToCart(1);
+                console.log('Added product 1');
+                updateStatus();
+            } else {
+                console.log('addToCart function not found!');
+            }
+        }
+        
+        function updateStatus() {
+            document.getElementById('cart-status').textContent = typeof addToCart !== 'undefined' ? 'Yes' : 'No';
+            if (typeof getCartSummary === 'function') {
+                const summary = getCartSummary();
+                document.getElementById('cart-items').textContent = summary.totalItems;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            updateStatus();
+            
+            setTimeout(() => {
+                console.log('Checking after delay...');
+                updateStatus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

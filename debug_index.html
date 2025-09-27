@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Cart - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-luxury-black">Lâm Thúy</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="openCart()" class="relative p-2 text-gray-600 hover:text-luxury-gold transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span class="cart-count absolute -top-2 -right-2 bg-luxury-gold text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8">Debug Cart Test</h2>
+            
+            <!-- Test Products -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-2">Áo sơ mi nam cao cấp</h3>
+                    <p class="text-gray-600 mb-4">2.500.000đ</p>
+                    <button onclick="testAddToCart(1)" class="w-full bg-luxury-gold text-white py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                        Test Add to Cart (ID: 1)
+                    </button>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-2">Váy dạ hội sang trọng</h3>
+                    <p class="text-gray-600 mb-4">3.200.000đ</p>
+                    <button onclick="testAddToCart(2)" class="w-full bg-luxury-gold text-white py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                        Test Add to Cart (ID: 2)
+                    </button>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-2">Nước hoa cao cấp</h3>
+                    <p class="text-gray-600 mb-4">1.800.000đ</p>
+                    <button onclick="testAddToCart(3)" class="w-full bg-luxury-gold text-white py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                        Test Add to Cart (ID: 3)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden">
+                <div class="p-6 border-b">
+                    <h2 class="text-2xl font-bold">Giỏ Hàng</h2>
+                </div>
+                <div class="p-6">
+                    <div id="cart-items"></div>
+                    <div id="empty-cart" class="text-center py-8">
+                        <p class="text-xl text-gray-500">Giỏ hàng trống</p>
+                        <p class="text-gray-400">Hãy chọn sản phẩm để thêm vào giỏ hàng</p>
+                    </div>
+                </div>
+                <div class="p-6 border-t">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-semibold">Tổng cộng:</span>
+                        <span id="cart-total" class="text-xl font-bold text-luxury-gold">0₫</span>
+                    </div>
+                    <button onclick="closeCart()" class="w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Script -->
+    <script src="script.js"></script>
+    
+    <script>
+        // Test function
+        function testAddToCart(productId) {
+            console.log('=== TEST ADD TO CART ===');
+            console.log('Product ID:', productId);
+            console.log('addToCart function exists:', typeof addToCart);
+            console.log('products object exists:', typeof products);
+            
+            if (typeof addToCart === 'function') {
+                console.log('Calling addToCart...');
+                addToCart(productId);
+            } else {
+                console.error('addToCart function not found!');
+                alert('Lỗi: Hàm addToCart không tồn tại!');
+            }
+        }
+        
+        // Check if everything is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== PAGE LOADED ===');
+            console.log('addToCart function:', typeof addToCart);
+            console.log('products object:', typeof products);
+            console.log('cart array:', typeof cart);
+            
+            if (typeof addToCart === 'function') {
+                console.log('✅ addToCart function is available');
+            } else {
+                console.error('❌ addToCart function is NOT available');
+            }
+        });
+    </script>
+</body>
+</html>

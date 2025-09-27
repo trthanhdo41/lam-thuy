@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-2xl font-bold mb-4">Quick Cart Test</h1>
+    
+    <button onclick="testCart()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+        Test Cart Function
+    </button>
+    
+    <div class="cart-count bg-red-500 text-white px-2 py-1 rounded inline-block">0</div>
+    
+    <script src="script.js"></script>
+    <script>
+        function testCart() {
+            console.log('Testing cart...');
+            if (typeof addToCart === 'function') {
+                console.log('addToCart exists, calling...');
+                addToCart(1);
+            } else {
+                console.error('addToCart not found!');
+                alert('addToCart function not found!');
+            }
+        }
+    </script>
+</body>
+</html>

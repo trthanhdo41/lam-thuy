@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Cart - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .luxury-gold { color: #D4AF37; }
+        .luxury-black { color: #1a1a1a; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">Debug Cart System</h1>
+        
+        <!-- Debug Info -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-bold mb-4">Debug Information</h2>
+            <div id="debug-info">
+                <p>Global cart loaded: <span id="cart-loaded">Checking...</span></p>
+                <p>AddToCart function: <span id="addtocart-function">Checking...</span></p>
+                <p>Products count: <span id="products-count">Checking...</span></p>
+                <p>Cart items: <span id="cart-items-count">Checking...</span></p>
+            </div>
+        </div>
+        
+        <!-- Test Buttons -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <button onclick="testAddToCart(1)" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600">
+                Test Quần áo (ID: 1)
+            </button>
+            <button onclick="testAddToCart(101)" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">
+                Test Giày dép (ID: 101)
+            </button>
+            <button onclick="testAddToCart(201)" class="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600">
+                Test Nước hoa (ID: 201)
+            </button>
+            <button onclick="debugCart()" class="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600">
+                Debug Cart
+            </button>
+        </div>
+        
+        <!-- Cart Info -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-bold mb-4">Cart Information</h2>
+            <div id="cart-info">
+                <p>Số lượng sản phẩm: <span id="cart-count">0</span></p>
+                <p>Tổng tiền: <span id="cart-total">0₫</span></p>
+            </div>
+        </div>
+        
+        <!-- Console Log -->
+        <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <h3 class="text-white font-bold mb-2">Console Log:</h3>
+            <div id="console-log"></div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        function log(message) {
+            const consoleLog = document.getElementById('console-log');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleLog.innerHTML += `[${timestamp}] ${message}<br>`;
+            console.log(message);
+        }
+        
+        function testAddToCart(productId) {
+            log(`Testing addToCart with product ID: ${productId}`);
+            try {
+                if (typeof addToCart === 'function') {
+                    addToCart(productId);
+                    log(`Successfully called addToCart(${productId})`);
+                } else {
+                    log('ERROR: addToCart function not found!');
+                }
+            } catch (error) {
+                log(`ERROR: ${error.message}`);
+            }
+            updateCartInfo();
+        }
+        
+        function debugCart() {
+            log('=== DEBUG CART START ===');
+            log(`typeof addToCart: ${typeof addToCart}`);
+            log(`typeof products: ${typeof products}`);
+            log(`typeof cart: ${typeof cart}`);
+            log(`cart length: ${cart ? cart.length : 'undefined'}`);
+            log(`products count: ${products ? Object.keys(products).length : 'undefined'}`);
+            
+            if (products) {
+                log('Available product IDs: ' + Object.keys(products).join(', '));
+            }
+            
+            if (cart) {
+                log('Current cart items: ' + JSON.stringify(cart));
+            }
+            log('=== DEBUG CART END ===');
+        }
+        
+        function updateCartInfo() {
+            try {
+                if (typeof getCartSummary === 'function') {
+                    const summary = getCartSummary();
+                    document.getElementById('cart-count').textContent = summary.totalItems;
+                    document.getElementById('cart-total').textContent = summary.totalPrice.toLocaleString() + '₫';
+                }
+            } catch (error) {
+                log(`Error updating cart info: ${error.message}`);
+            }
+        }
+        
+        function updateDebugInfo() {
+            document.getElementById('cart-loaded').textContent = typeof addToCart !== 'undefined' ? 'Yes' : 'No';
+            document.getElementById('addtocart-function').textContent = typeof addToCart === 'function' ? 'Yes' : 'No';
+            document.getElementById('products-count').textContent = typeof products !== 'undefined' ? Object.keys(products).length : 'No';
+            document.getElementById('cart-items-count').textContent = typeof cart !== 'undefined' ? cart.length : 'No';
+        }
+        
+        // Update debug info when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            log('DOM loaded, checking cart system...');
+            updateDebugInfo();
+            updateCartInfo();
+            
+            // Check again after a delay
+            setTimeout(() => {
+                log('Checking cart system after delay...');
+                updateDebugInfo();
+                updateCartInfo();
+            }, 1000);
+        });
+        
+        // Update cart info when cart changes
+        setInterval(updateCartInfo, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .luxury-gold { color: #D4AF37; }
+        .luxury-black { color: #1a1a1a; }
+    </style>
+</head>
+<body class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Test Simple Cart</h1>
+    
+    <div class="mb-4">
+        <button onclick="testAdd(1)" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+            Thêm áo sơ mi (ID: 1)
+        </button>
+        <button onclick="testAdd(101)" class="bg-green-500 text-white px-4 py-2 rounded mr-2">
+            Thêm giày (ID: 101)
+        </button>
+        <button onclick="testAdd(201)" class="bg-purple-500 text-white px-4 py-2 rounded mr-2">
+            Thêm nước hoa (ID: 201)
+        </button>
+        <button onclick="openCart()" class="bg-yellow-500 text-white px-4 py-2 rounded mr-2">
+            Mở giỏ hàng
+        </button>
+        <button onclick="clearCart()" class="bg-red-500 text-white px-4 py-2 rounded">
+            Xóa giỏ hàng
+        </button>
+    </div>
+    
+    <div id="status" class="mb-4 p-4 bg-gray-100 rounded">
+        <p>Trạng thái: <span id="status-text">Đang kiểm tra...</span></p>
+        <p>Số sản phẩm trong giỏ: <span id="cart-count">0</span></p>
+    </div>
+    
+    <div id="debug" class="mb-4 p-4 bg-yellow-100 rounded">
+        <h3 class="font-bold">Thông tin debug:</h3>
+        <p>addToCart: <span id="addtocart-status">Chưa kiểm tra</span></p>
+        <p>products: <span id="products-status">Chưa kiểm tra</span></p>
+        <p>cart: <span id="cart-status">Chưa kiểm tra</span></p>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4">Giỏ hàng</h2>
+                <div id="empty-cart" class="text-center py-8">
+                    <p>Giỏ hàng trống</p>
+                </div>
+                <div id="cart-items" class="space-y-2">
+                    <!-- Items here -->
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <p>Tổng: <span id="cart-total">0₫</span></p>
+                </div>
+                <button onclick="closeCart()" class="mt-4 w-full bg-gray-500 text-white py-2 rounded">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            console.log(message);
+            document.getElementById('status-text').textContent = message;
+        }
+        
+        function testAdd(productId) {
+            log(`Đang thêm sản phẩm ID: ${productId}`);
+            if (typeof addToCart === 'function') {
+                addToCart(productId);
+                log(`Đã thêm sản phẩm ID: ${productId}`);
+                updateDebug();
+            } else {
+                log('Lỗi: Không tìm thấy hàm addToCart');
+            }
+        }
+        
+        function updateDebug() {
+            document.getElementById('addtocart-status').textContent = typeof addToCart;
+            document.getElementById('products-status').textContent = typeof products;
+            document.getElementById('cart-status').textContent = typeof cart;
+            
+            if (typeof getCartSummary === 'function') {
+                const summary = getCartSummary();
+                document.getElementById('cart-count').textContent = summary.totalItems;
+            }
+        }
+        
+        // Check when page loads
+        window.addEventListener('load', function() {
+            log('Trang đã load');
+            updateDebug();
+            
+            setTimeout(() => {
+                log('Kiểm tra sau 1 giây...');
+                updateDebug();
+            }, 1000);
+        });
+    </script>
+    
+    <script src="global-cart-simple.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Step by Step</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Test Step by Step</h1>
+    
+    <div id="status" class="mb-4 p-4 bg-gray-100 rounded">
+        <p>Status: <span id="status-text">Loading...</span></p>
+    </div>
+    
+    <button onclick="testAdd()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+        Test Add to Cart
+    </button>
+    
+    <button onclick="testOpenCart()" class="bg-green-500 text-white px-4 py-2 rounded mb-4">
+        Test Open Cart
+    </button>
+    
+    <div id="debug" class="mt-4 p-4 bg-yellow-100 rounded">
+        <h3 class="font-bold">Debug Info:</h3>
+        <p>addToCart function: <span id="addtocart-status">Checking...</span></p>
+        <p>products object: <span id="products-status">Checking...</span></p>
+        <p>cart array: <span id="cart-status">Checking...</span></p>
+    </div>
+
+    <script>
+        // Test 1: Check if global-cart.js loads
+        console.log('=== TEST 1: Loading global-cart.js ===');
+        
+        // Test 2: Check functions after load
+        window.addEventListener('load', function() {
+            console.log('=== TEST 2: Page loaded ===');
+            updateStatus('Page loaded');
+            
+            setTimeout(() => {
+                console.log('=== TEST 3: Checking functions after delay ===');
+                checkFunctions();
+            }, 1000);
+        });
+        
+        function checkFunctions() {
+            console.log('Checking addToCart:', typeof addToCart);
+            console.log('Checking products:', typeof products);
+            console.log('Checking cart:', typeof cart);
+            
+            document.getElementById('addtocart-status').textContent = typeof addToCart;
+            document.getElementById('products-status').textContent = typeof products;
+            document.getElementById('cart-status').textContent = typeof cart;
+            
+            if (typeof addToCart === 'function') {
+                updateStatus('Functions loaded successfully');
+            } else {
+                updateStatus('Functions NOT loaded');
+            }
+        }
+        
+        function testAdd() {
+            console.log('=== TEST 4: Testing addToCart ===');
+            if (typeof addToCart === 'function') {
+                console.log('Calling addToCart(1)...');
+                addToCart(1);
+                console.log('addToCart called');
+                updateStatus('Product added to cart');
+            } else {
+                console.log('addToCart function not available');
+                updateStatus('addToCart function not available');
+            }
+        }
+        
+        function testOpenCart() {
+            console.log('=== TEST 5: Testing openCart ===');
+            if (typeof openCart === 'function') {
+                console.log('Calling openCart...');
+                openCart();
+                console.log('openCart called');
+                updateStatus('Cart opened');
+            } else {
+                console.log('openCart function not available');
+                updateStatus('openCart function not available');
+            }
+        }
+        
+        function updateStatus(message) {
+            document.getElementById('status-text').textContent = message;
+            console.log('Status:', message);
+        }
+    </script>
+    
+    <script src="global-cart.js"></script>
+</body>
+</html>

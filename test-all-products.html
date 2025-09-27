@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test All Products - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .luxury-gold { color: #D4AF37; }
+        .luxury-black { color: #1a1a1a; }
+    </style>
+</head>
+<body class="p-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Test All Products</h1>
+    
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Quần áo (ID 1-20)</h2>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <button onclick="testAdd(1)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo sơ mi (1)</button>
+            <button onclick="testAdd(2)" class="bg-blue-500 text-white px-4 py-2 rounded">Váy dạ hội (2)</button>
+            <button onclick="testAdd(3)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo thun (3)</button>
+            <button onclick="testAdd(4)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần jean (4)</button>
+            <button onclick="testAdd(5)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo khoác (5)</button>
+            <button onclick="testAdd(6)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần tây (6)</button>
+            <button onclick="testAdd(7)" class="bg-blue-500 text-white px-4 py-2 rounded">Váy maxi (7)</button>
+            <button onclick="testAdd(8)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo hoodie (8)</button>
+            <button onclick="testAdd(9)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần short (9)</button>
+            <button onclick="testAdd(10)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo sơ mi nữ (10)</button>
+            <button onclick="testAdd(11)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần jogger (11)</button>
+            <button onclick="testAdd(12)" class="bg-blue-500 text-white px-4 py-2 rounded">Váy đầm (12)</button>
+            <button onclick="testAdd(13)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo len (13)</button>
+            <button onclick="testAdd(14)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần legging (14)</button>
+            <button onclick="testAdd(15)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo blazer (15)</button>
+            <button onclick="testAdd(16)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần short nam (16)</button>
+            <button onclick="testAdd(17)" class="bg-blue-500 text-white px-4 py-2 rounded">Váy midi (17)</button>
+            <button onclick="testAdd(18)" class="bg-blue-500 text-white px-4 py-2 rounded">Áo cardigan (18)</button>
+            <button onclick="testAdd(19)" class="bg-blue-500 text-white px-4 py-2 rounded">Quần chinos (19)</button>
+            <button onclick="testAdd(20)" class="bg-blue-500 text-white px-4 py-2 rounded">Set đồ nữ (20)</button>
+        </div>
+    </div>
+    
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Giày dép (ID 101-120)</h2>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <button onclick="testAdd(101)" class="bg-green-500 text-white px-4 py-2 rounded">Sneaker (101)</button>
+            <button onclick="testAdd(102)" class="bg-green-500 text-white px-4 py-2 rounded">Boot nam (102)</button>
+            <button onclick="testAdd(103)" class="bg-green-500 text-white px-4 py-2 rounded">Sandals (103)</button>
+            <button onclick="testAdd(104)" class="bg-green-500 text-white px-4 py-2 rounded">Cao gót (104)</button>
+            <button onclick="testAdd(105)" class="bg-green-500 text-white px-4 py-2 rounded">Thể thao nữ (105)</button>
+            <button onclick="testAdd(106)" class="bg-green-500 text-white px-4 py-2 rounded">Lười nam (106)</button>
+            <button onclick="testAdd(107)" class="bg-green-500 text-white px-4 py-2 rounded">Oxford (107)</button>
+            <button onclick="testAdd(108)" class="bg-green-500 text-white px-4 py-2 rounded">Cao gót party (108)</button>
+            <button onclick="testAdd(109)" class="bg-green-500 text-white px-4 py-2 rounded">Sneaker unisex (109)</button>
+            <button onclick="testAdd(110)" class="bg-green-500 text-white px-4 py-2 rounded">Boot nữ (110)</button>
+        </div>
+    </div>
+    
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">Nước hoa (ID 201-220)</h2>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <button onclick="testAdd(201)" class="bg-purple-500 text-white px-4 py-2 rounded">Nam cao cấp (201)</button>
+            <button onclick="testAdd(202)" class="bg-purple-500 text-white px-4 py-2 rounded">Nữ sang trọng (202)</button>
+            <button onclick="testAdd(203)" class="bg-purple-500 text-white px-4 py-2 rounded">Unisex (203)</button>
+            <button onclick="testAdd(204)" class="bg-purple-500 text-white px-4 py-2 rounded">Nam quyến rũ (204)</button>
+            <button onclick="testAdd(205)" class="bg-purple-500 text-white px-4 py-2 rounded">Nữ thanh lịch (205)</button>
+            <button onclick="testAdd(206)" class="bg-purple-500 text-white px-4 py-2 rounded">Nam thể thao (206)</button>
+            <button onclick="testAdd(207)" class="bg-purple-500 text-white px-4 py-2 rounded">Nữ dự tiệc (207)</button>
+            <button onclick="testAdd(208)" class="bg-purple-500 text-white px-4 py-2 rounded">Nam công sở (208)</button>
+            <button onclick="testAdd(209)" class="bg-purple-500 text-white px-4 py-2 rounded">Nữ công sở (209)</button>
+            <button onclick="testAdd(210)" class="bg-purple-500 text-white px-4 py-2 rounded">Nam mùa hè (210)</button>
+        </div>
+    </div>
+    
+    <div class="mb-8 text-center">
+        <button onclick="openCart()" class="bg-yellow-500 text-white px-8 py-4 rounded-lg text-lg font-bold mr-4">
+            <i class="fas fa-shopping-bag mr-2"></i>
+            Mở giỏ hàng (<span id="cart-count">0</span>)
+        </button>
+        <button onclick="clearCart()" class="bg-red-500 text-white px-8 py-4 rounded-lg text-lg font-bold">
+            Xóa giỏ hàng
+        </button>
+    </div>
+    
+    <div class="mb-4">
+        <a href="index.html" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Đi đến Index</a>
+        <a href="clothing.html" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Đi đến Clothing</a>
+        <a href="giay-dep.html" class="bg-purple-500 text-white px-4 py-2 rounded mr-2">Đi đến Giày Dép</a>
+        <a href="nuoc-hoa.html" class="bg-pink-500 text-white px-4 py-2 rounded">Đi đến Nước Hoa</a>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        function testAdd(productId) {
+            console.log('Testing addToCart with ID:', productId);
+            if (typeof addToCart === 'function') {
+                addToCart(productId);
+                updateStatus();
+            } else {
+                console.log('addToCart function not found!');
+            }
+        }
+        
+        function updateStatus() {
+            if (typeof getCartSummary === 'function') {
+                const summary = getCartSummary();
+                document.getElementById('cart-count').textContent = summary.totalItems;
+            }
+        }
+        
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+        
+        // Update status when page loads
+        window.addEventListener('load', function() {
+            console.log('Page loaded, updating status...');
+            updateStatus();
+            
+            // Force update cart display
+            if (typeof updateCartDisplay === 'function') {
+                updateCartDisplay();
+            }
+        });
+        
+        // Update status every 2 seconds
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

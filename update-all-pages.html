@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update All Pages - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-black': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-crown text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-black text-luxury-black">Update All Pages</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="openCart()" class="relative p-2 text-gray-800 hover:text-luxury-gold transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-luxury-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black text-luxury-black mb-4">Cập nhật tất cả các trang</h1>
+            <p class="text-lg text-gray-600">Danh sách các trang đã được cập nhật với giỏ hàng toàn cục</p>
+        </div>
+
+        <!-- Status Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Trang chính -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang chính</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="index.html" class="text-blue-600 hover:underline">index.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="clothing.html" class="text-blue-600 hover:underline">clothing.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="giay-dep.html" class="text-blue-600 hover:underline">giay-dep.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="nuoc-hoa.html" class="text-blue-600 hover:underline">nuoc-hoa.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang sản phẩm quần áo -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Quần áo</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="shirt.html" class="text-blue-600 hover:underline">shirt.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="tshirt.html" class="text-blue-600 hover:underline">tshirt.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="jeans.html" class="text-blue-600 hover:underline">jeans.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="dress.html" class="text-blue-600 hover:underline">dress.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="jacket.html" class="text-blue-600 hover:underline">jacket.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="trousers.html" class="text-blue-600 hover:underline">trousers.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang giày dép -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Giày dép</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sneakers.html" class="text-blue-600 hover:underline">sneakers.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="boots.html" class="text-blue-600 hover:underline">boots.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="heels.html" class="text-blue-600 hover:underline">heels.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sandals.html" class="text-blue-600 hover:underline">sandals.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="dress-shoes.html" class="text-blue-600 hover:underline">dress-shoes.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sports-shoes.html" class="text-blue-600 hover:underline">sports-shoes.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang nước hoa -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Nước hoa</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-men.html" class="text-blue-600 hover:underline">perfume-men.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-women.html" class="text-blue-600 hover:underline">perfume-women.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-unisex.html" class="text-blue-600 hover:underline">perfume-unisex.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-summer.html" class="text-blue-600 hover:underline">perfume-summer.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-natural.html" class="text-blue-600 hover:underline">perfume-natural.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-luxury.html" class="text-blue-600 hover:underline">perfume-luxury.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang test -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang test</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="test-global-cart.html" class="text-blue-600 hover:underline">test-global-cart.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="debug-cart.html" class="text-blue-600 hover:underline">debug-cart.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="simple-test.html" class="text-blue-600 hover:underline">simple-test.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang khác -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang khác</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="quan-ao.html" class="text-blue-600 hover:underline">quan-ao.html</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Instructions -->
+        <div class="bg-luxury-gold rounded-2xl shadow-lg p-8 text-center">
+            <h2 class="text-3xl font-bold text-luxury-black mb-4">Cách test giỏ hàng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 1</h3>
+                    <p class="text-gray-600">Mở bất kỳ trang nào (ví dụ: index.html)</p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 2</h3>
+                    <p class="text-gray-600">Thêm sản phẩm vào giỏ hàng</p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 3</h3>
+                    <p class="text-gray-600">Chuyển sang trang khác và kiểm tra giỏ hàng</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4"></div>
+            </div>
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Update all pages loaded');
+        });
+    </script>
+</body>
+</html>
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update All Pages - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-black': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-crown text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-black text-luxury-black">Update All Pages</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="openCart()" class="relative p-2 text-gray-800 hover:text-luxury-gold transition-colors">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span class="cart-count absolute -top-1 -right-1 bg-luxury-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black text-luxury-black mb-4">Cập nhật tất cả các trang</h1>
+            <p class="text-lg text-gray-600">Danh sách các trang đã được cập nhật với giỏ hàng toàn cục</p>
+        </div>
+
+        <!-- Status Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Trang chính -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang chính</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="index.html" class="text-blue-600 hover:underline">index.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="clothing.html" class="text-blue-600 hover:underline">clothing.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="giay-dep.html" class="text-blue-600 hover:underline">giay-dep.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="nuoc-hoa.html" class="text-blue-600 hover:underline">nuoc-hoa.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang sản phẩm quần áo -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Quần áo</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="shirt.html" class="text-blue-600 hover:underline">shirt.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="tshirt.html" class="text-blue-600 hover:underline">tshirt.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="jeans.html" class="text-blue-600 hover:underline">jeans.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="dress.html" class="text-blue-600 hover:underline">dress.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="jacket.html" class="text-blue-600 hover:underline">jacket.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="trousers.html" class="text-blue-600 hover:underline">trousers.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang giày dép -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Giày dép</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sneakers.html" class="text-blue-600 hover:underline">sneakers.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="boots.html" class="text-blue-600 hover:underline">boots.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="heels.html" class="text-blue-600 hover:underline">heels.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sandals.html" class="text-blue-600 hover:underline">sandals.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="dress-shoes.html" class="text-blue-600 hover:underline">dress-shoes.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="sports-shoes.html" class="text-blue-600 hover:underline">sports-shoes.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang nước hoa -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Nước hoa</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-men.html" class="text-blue-600 hover:underline">perfume-men.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-women.html" class="text-blue-600 hover:underline">perfume-women.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-unisex.html" class="text-blue-600 hover:underline">perfume-unisex.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-summer.html" class="text-blue-600 hover:underline">perfume-summer.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-natural.html" class="text-blue-600 hover:underline">perfume-natural.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="perfume-luxury.html" class="text-blue-600 hover:underline">perfume-luxury.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang test -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang test</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="test-global-cart.html" class="text-blue-600 hover:underline">test-global-cart.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="debug-cart.html" class="text-blue-600 hover:underline">debug-cart.html</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="simple-test.html" class="text-blue-600 hover:underline">simple-test.html</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang khác -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Trang khác</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-500"></i>
+                        <a href="quan-ao.html" class="text-blue-600 hover:underline">quan-ao.html</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Instructions -->
+        <div class="bg-luxury-gold rounded-2xl shadow-lg p-8 text-center">
+            <h2 class="text-3xl font-bold text-luxury-black mb-4">Cách test giỏ hàng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 1</h3>
+                    <p class="text-gray-600">Mở bất kỳ trang nào (ví dụ: index.html)</p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 2</h3>
+                    <p class="text-gray-600">Thêm sản phẩm vào giỏ hàng</p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Bước 3</h3>
+                    <p class="text-gray-600">Chuyển sang trang khác và kiểm tra giỏ hàng</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4"></div>
+            </div>
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Update all pages loaded');
+        });
+    </script>
+</body>
+</html>

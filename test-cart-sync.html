@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cart Sync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .luxury-gold { color: #D4AF37; }
+        .luxury-black { color: #1a1a1a; }
+    </style>
+</head>
+<body class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Test Cart Sync</h1>
+    
+    <div class="mb-4">
+        <button onclick="testAdd(1)" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+            Thêm áo sơ mi (ID: 1)
+        </button>
+        <button onclick="testAdd(101)" class="bg-green-500 text-white px-4 py-2 rounded mr-2">
+            Thêm giày (ID: 101)
+        </button>
+        <button onclick="testAdd(201)" class="bg-purple-500 text-white px-4 py-2 rounded mr-2">
+            Thêm nước hoa (ID: 201)
+        </button>
+        <button onclick="openCart()" class="bg-yellow-500 text-white px-4 py-2 rounded mr-2">
+            Mở giỏ hàng
+        </button>
+        <button onclick="clearCart()" class="bg-red-500 text-white px-4 py-2 rounded">
+            Xóa giỏ hàng
+        </button>
+    </div>
+    
+    <div id="status" class="mb-4 p-4 bg-gray-100 rounded">
+        <p>Trạng thái: <span id="status-text">Đang kiểm tra...</span></p>
+        <p>Số sản phẩm trong giỏ: <span id="cart-count">0</span></p>
+        <p>Cart items: <span id="cart-items-count">0</span></p>
+    </div>
+    
+    <div class="mb-4">
+        <a href="index.html" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Đi đến Index</a>
+        <a href="clothing.html" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Đi đến Clothing</a>
+        <a href="giay-dep.html" class="bg-purple-500 text-white px-4 py-2 rounded mr-2">Đi đến Giày Dép</a>
+        <a href="nuoc-hoa.html" class="bg-pink-500 text-white px-4 py-2 rounded">Đi đến Nước Hoa</a>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-cart.js"></script>
+    <script>
+        function testAdd(productId) {
+            console.log('Testing addToCart with ID:', productId);
+            if (typeof addToCart === 'function') {
+                addToCart(productId);
+                updateStatus();
+            } else {
+                console.log('addToCart function not found!');
+            }
+        }
+        
+        function updateStatus() {
+            if (typeof getCartSummary === 'function') {
+                const summary = getCartSummary();
+                document.getElementById('cart-count').textContent = summary.totalItems;
+                document.getElementById('cart-items-count').textContent = cart.length;
+                document.getElementById('status-text').textContent = `Cart updated: ${summary.totalItems} items`;
+            }
+        }
+        
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+        
+        // Update status when page loads
+        window.addEventListener('load', function() {
+            console.log('Page loaded, updating status...');
+            updateStatus();
+            
+            // Force update cart display
+            if (typeof updateCartDisplay === 'function') {
+                updateCartDisplay();
+            }
+        });
+        
+        // Update status every 2 seconds
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

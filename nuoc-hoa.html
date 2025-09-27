@@ -1,0 +1,1334 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nước Hoa - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="global-cart.js"></script>
+    <style>
+        /* Smooth scroll for better UX */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        #typing-cursor-perfume {
+            color: #D4AF37;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Cart animations */
+        @keyframes cartBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes slideInRight {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes fadeInUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cart-bounce {
+            animation: cartBounce 0.6s ease-in-out;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.3s ease-out;
+        }
+        
+        .slide-out-right {
+            animation: slideOutRight 0.3s ease-in;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        .pulse-hover:hover {
+            animation: pulse 0.3s ease-in-out;
+        }
+        
+        /* Button hover effects */
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-hover:active {
+            transform: translateY(0);
+        }
+        
+        /* Cart modal animations */
+        .cart-modal {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cart-item {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .cart-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-black': '#1a1a1a',
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header (giữ nguyên từ index.html) -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <!-- Top Header -->
+        <div class="w-full bg-luxury-black text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center text-sm">
+                    <div class="flex items-center space-x-4">
+                        <span id="shipping-text">Miễn phí vận chuyển cho đơn hàng từ 500.000₫</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <!-- Support Dropdown -->
+                                            <!-- Support Dropdown -->
+                    <div class="relative group">
+                        <button class="hover:text-luxury-gold transition-all duration-300 flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-white/10 group" id="support-text">
+                            <i class="fas fa-headset text-sm"></i>
+                            <span class="font-medium text-sm">Hỗ trợ</span>
+                            <i class="fas fa-chevron-down text-xs group-hover:rotate-180 transition-transform duration-300"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-gray-800 mb-4" id="support-header-title">Liên hệ hỗ trợ</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                        <div class="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center">
+                                            <i class="fas fa-phone text-white text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Hotline</p>
+                                            <p class="text-sm text-gray-600">0376004659</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                        <div class="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center">
+                                            <i class="fab fa-facebook-messenger text-white text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Messenger</p>
+                                            <p class="text-sm text-gray-600">Chat ngay</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                        <div class="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center">
+                                            <i class="fas fa-envelope text-white text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">Email</p>
+                                            <p class="text-sm text-gray-600">support@h2wear.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="w-full bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fas fa-crown text-white text-lg"></i>
+                        </div>
+                        <h1 class="text-2xl font-black text-luxury-black">Lâm Thúy</h1>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="nav-link text-gray-800 hover:text-luxury-gold font-bold transition-colors duration-300">TRANG CHỦ</a>
+                        <a href="clothing.html" class="nav-link text-gray-800 hover:text-luxury-gold font-bold transition-colors duration-300">QUẦN ÁO</a>
+                        <a href="giay-dep.html" class="nav-link text-gray-800 hover:text-luxury-gold font-bold transition-colors duration-300">GIÀY DÉP</a>
+                        <a href="nuoc-hoa.html" class="nav-link text-luxury-gold font-bold transition-colors duration-300">NƯỚC HOA</a>
+                        <a href="#" onclick="openSaleModal(); return false;" class="nav-link text-gray-800 hover:text-luxury-gold font-bold transition-colors duration-300" id="nav-sale">SALE</a>
+                    </nav>
+
+                    <!-- Search & Cart -->
+                    <div class="flex items-center space-x-4">
+                        <div class="search-box relative">
+                            <input type="text" class="search-input w-64 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-luxury-gold" placeholder="Tìm kiếm...">
+                            <button class="search-icon absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-luxury-gold">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <button class="text-gray-800 hover:text-luxury-gold transition-colors">
+                                <i class="far fa-heart text-xl"></i>
+                            </button>
+                            <button onclick="openCart()" class="relative text-gray-800 hover:text-luxury-gold transition-colors">
+                                <i class="fas fa-shopping-bag text-xl"></i>
+                                <span class="cart-count absolute -top-2 -right-2 bg-luxury-gold text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                            </button>
+                            
+                            <!-- Mobile Menu Button -->
+                            <button id="mobile-menu-btn" class="md:hidden text-gray-800 hover:text-luxury-gold transition-colors">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-80 h-full shadow-xl transform -translate-x-full transition-transform duration-300" id="mobileMenuPanel">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-black text-luxury-black">H2<span class="text-luxury-gold">WEAR</span></h2>
+                    <button onclick="toggleMobileMenu()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <nav class="space-y-4">
+                    <a href="index.html" class="block text-lg font-bold text-gray-800 hover:text-luxury-gold transition-colors py-2">TRANG CHỦ</a>
+                    <a href="clothing.html" class="block text-lg font-bold text-gray-800 hover:text-luxury-gold transition-colors py-2">QUẦN ÁO</a>
+                    <a href="giay-dep.html" class="block text-lg font-bold text-gray-800 hover:text-luxury-gold transition-colors py-2">GIÀY DÉP</a>
+                    <a href="nuoc-hoa.html" class="block text-lg font-bold text-luxury-gold py-2">NƯỚC HOA</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-gray-500 hover:text-luxury-gold transition-colors">Trang chủ</a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-luxury-gold font-medium">Nước Hoa</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-luxury-black mb-4">Nước Hoa</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                <span id="typing-text-perfume"></span><span id="typing-cursor-perfume" class="animate-pulse">|</span>
+            </p>
+        </div>
+
+        <!-- Category Navigation -->
+        <div class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Chọn danh mục nước hoa</h2>
+                <p class="text-gray-600">Khám phá bộ sưu tập nước hoa đa dạng của chúng tôi</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="perfume-men.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-male text-2xl text-blue-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Nam</h3>
+                        <p class="text-sm text-gray-500 mt-1">Hương thơm mạnh mẽ, nam tính</p>
+                    </div>
+                </a>
+
+                <a href="perfume-women.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-female text-2xl text-pink-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Nữ</h3>
+                        <p class="text-sm text-gray-500 mt-1">Hương thơm nữ tính, quyến rũ</p>
+                    </div>
+                </a>
+
+                <a href="perfume-unisex.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-gem text-2xl text-purple-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Unisex</h3>
+                        <p class="text-sm text-gray-500 mt-1">Hương thơm phổ quát, dễ chịu</p>
+                    </div>
+                </a>
+
+                <a href="perfume-natural.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-leaf text-2xl text-green-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Thiên Nhiên</h3>
+                        <p class="text-sm text-gray-500 mt-1">Hương thơm tự nhiên, tươi mát</p>
+                    </div>
+                </a>
+
+                <a href="perfume-luxury.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-crown text-2xl text-orange-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Cao Cấp</h3>
+                        <p class="text-sm text-gray-500 mt-1">Sang trọng, độc quyền</p>
+                    </div>
+                </a>
+
+                <a href="perfume-summer.html" class="category-btn group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-transparent hover:border-luxury-gold block">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-luxury-gold group-hover:to-yellow-400 transition-all duration-300">
+                            <i class="fas fa-star text-2xl text-indigo-600 group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 group-hover:text-luxury-gold transition-colors duration-300">Nước Hoa Mùa Hè</h3>
+                        <p class="text-sm text-gray-500 mt-1">Tươi mát, năng động</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Product 1 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(1)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Eau de Parfum Classic" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(201)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Eau de Parfum Classic</h3>
+                    <p class="text-gray-600 mb-4">Hương thơm cổ điển, sang trọng</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.500.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(28)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(2)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Eau de Parfum Modern" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">Sale</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(202)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Eau de Parfum Modern</h3>
+                    <p class="text-gray-600 mb-4">Hiện đại, trẻ trung</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-black text-luxury-gold">2.800.000₫</span>
+                            <span class="text-lg text-gray-400 line-through">3.200.000₫</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(42)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(3)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Eau de Parfum Luxury" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(203)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Eau de Parfum Luxury</h3>
+                    <p class="text-gray-600 mb-4">Cao cấp, độc quyền</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">3.500.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(67)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(4)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Eau de Parfum Limited" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(204)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Eau de Parfum Limited</h3>
+                    <p class="text-gray-600 mb-4">Phiên bản giới hạn</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">4.200.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(15)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(5)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Nam" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(205)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Nam</h3>
+                    <p class="text-gray-600 mb-4">Mạnh mẽ, nam tính</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.200.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(39)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(6)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Nữ" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">Hot</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(206)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Nữ</h3>
+                    <p class="text-gray-600 mb-4">Nữ tính, quyến rũ</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.600.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(74)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(7)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Unisex" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">Sale</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(207)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Unisex</h3>
+                    <p class="text-gray-600 mb-4">Phù hợp cả nam và nữ</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-black text-luxury-gold">1.500.000₫</span>
+                            <span class="text-lg text-gray-400 line-through">2.000.000₫</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(46)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(8)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Premium" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(208)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Premium</h3>
+                    <p class="text-gray-600 mb-4">Cao cấp, sang trọng</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">4.200.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(28)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(9)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Floral" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(209)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Floral</h3>
+                    <p class="text-gray-600 mb-4">Hoa cỏ, tự nhiên</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.900.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(62)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(10)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Woody" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">Hot</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(210)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Woody</h3>
+                    <p class="text-gray-600 mb-4">Gỗ, ấm áp</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.300.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(51)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(11)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Citrus" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(211)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Citrus</h3>
+                    <p class="text-gray-600 mb-4">Cam chanh, tươi mát</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.600.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(38)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(12)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Oriental" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-bold">Sale</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(212)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Oriental</h3>
+                    <p class="text-gray-600 mb-4">Phương Đông, bí ẩn</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-black text-luxury-gold">2.100.000₫</span>
+                            <span class="text-lg text-gray-400 line-through">2.600.000₫</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(44)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 13 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(13)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Aquatic" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(213)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Aquatic</h3>
+                    <p class="text-gray-600 mb-4">Biển cả, trong lành</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.700.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(33)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 14 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(14)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Gourmand" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(214)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Gourmand</h3>
+                    <p class="text-gray-600 mb-4">Ngọt ngào, quyến rũ</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.400.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(57)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 15 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(15)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Spicy" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(215)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Spicy</h3>
+                    <p class="text-gray-600 mb-4">Cay nồng, mạnh mẽ</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">2.800.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(29)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 16 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(16)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Fresh" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">Hot</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(216)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Fresh</h3>
+                    <p class="text-gray-600 mb-4">Tươi mát, sảng khoái</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.300.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(71)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 17 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(17)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Musky" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(217)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Musky</h3>
+                    <p class="text-gray-600 mb-4">Xạ hương, quyến rũ</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">3.100.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(36)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 18 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(18)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Fruity" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">New</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(218)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Fruity</h3>
+                    <p class="text-gray-600 mb-4">Trái cây, ngọt ngào</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.800.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(48)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 19 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(19)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Green" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(219)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Green</h3>
+                    <p class="text-gray-600 mb-4">Xanh lá, tự nhiên</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black text-luxury-gold">1.500.000₫</span>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(42)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 20 -->
+            <div class="product-card group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden hidden">
+                <div class="relative overflow-hidden cursor-pointer" onclick="showProductDetail(20)">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=400&fit=crop" alt="Nước Hoa Exotic" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">Sale</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <button onclick="event.stopPropagation(); addToCart(220)" class="opacity-0 group-hover:opacity-100 bg-luxury-gold text-white px-6 py-3 rounded-full font-semibold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i>
+                            Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nước Hoa Exotic</h3>
+                    <p class="text-gray-600 mb-4">Ngoại lai, độc đáo</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-black text-luxury-gold">2.700.000₫</span>
+                            <span class="text-lg text-gray-400 line-through">3.500.000₫</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(23)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button id="loadMoreBtn" onclick="loadMoreProducts()" class="bg-luxury-gold text-white px-8 py-4 rounded-2xl font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <i class="fas fa-plus mr-2"></i>
+                Xem thêm sản phẩm
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-luxury-black text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-luxury-gold to-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fas fa-crown text-white text-lg"></i>
+                        </div>
+                        <h3 class="text-2xl font-black">Lâm Thúy</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Thời trang cao cấp cho phụ nữ và đàn ông hiện đại</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-luxury-gold transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-luxury-gold transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-luxury-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Danh mục</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="clothing.html" class="hover:text-luxury-gold transition-colors">Quần Áo</a></li>
+                        <li><a href="giay-dep.html" class="hover:text-luxury-gold transition-colors">Giày Dép</a></li>
+                        <li><a href="nuoc-hoa.html" class="hover:text-luxury-gold transition-colors">Nước Hoa</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Hỗ trợ</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Liên hệ</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Chính sách đổi trả</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kết nối</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Hotline: 037253746</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Facebook: Nguyễn Minh Hiếu</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Zalo: 037253746</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 Lâm Thúy. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+    
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="navigation.js"></script>
+    <script>
+        // Sale Modal Functions
+        function openSaleModal() {
+            const modal = document.getElementById('saleModal');
+            const modalContent = document.getElementById('saleModalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeSaleModal() {
+            const modal = document.getElementById('saleModal');
+            const modalContent = document.getElementById('saleModalContent');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function viewFeaturedProducts() {
+            closeSaleModal();
+            // Redirect to perfume page to show featured products
+            window.location.href = 'nuoc-hoa.html';
+        }
+
+        // Typing effect for perfume page
+        function typeWriterPerfume() {
+            const text = "Khám phá bộ sưu tập nước hoa cao cấp với hương thơm quyến rũ và độc đáo";
+            const typingElement = document.getElementById('typing-text-perfume');
+            const cursorElement = document.getElementById('typing-cursor-perfume');
+            
+            if (!typingElement || !cursorElement) return;
+            
+            let i = 0;
+            const speed = 15;
+            
+            function type() {
+                if (i < text.length) {
+                    typingElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        cursorElement.style.display = 'none';
+                    }, 1000);
+                }
+            }
+            
+            setTimeout(type, 1000);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            typeWriterPerfume();
+        });
+    </script>
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenuPanel.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                mobileMenuPanel.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+
+    
+    </div>
+    
+    </div>
+    <!-- Sale Modal -->
+    <div id="saleModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 transform transition-all duration-300 scale-95 opacity-0" id="saleModalContent">
+            <div class="p-8 text-center">
+                <!-- Icon -->
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-shopping-bag text-2xl text-gray-600"></i>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Chưa có sản phẩm</h3>
+                
+                <!-- Message -->
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Danh mục SALE hiện tại chưa có sản phẩm nào. Vui lòng quay lại sau!
+                </p>
+                
+                <!-- Buttons -->
+                <div class="flex space-x-4">
+                    <button onclick="closeSaleModal()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Đóng
+                    </button>
+                    <button onclick="viewFeaturedProducts()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        Xem sản phẩm nổi bật
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script>
+        // Load more products functionality
+        let currentVisibleProducts = 4;
+        const totalProducts = 20;
+        const productsPerLoad = 4;
+
+        function loadMoreProducts() {
+            const hiddenProducts = document.querySelectorAll('.product-card.hidden');
+            const productsToShow = Math.min(productsPerLoad, hiddenProducts.length);
+            
+            // Show next batch of products with animation
+            for (let i = 0; i < productsToShow; i++) {
+                if (hiddenProducts[i]) {
+                    hiddenProducts[i].classList.remove('hidden');
+                    hiddenProducts[i].style.opacity = '0';
+                    hiddenProducts[i].style.transform = 'translateY(30px)';
+                    
+                    // Animate in
+                    setTimeout(() => {
+                        hiddenProducts[i].style.transition = 'all 0.6s ease-out';
+                        hiddenProducts[i].style.opacity = '1';
+                        hiddenProducts[i].style.transform = 'translateY(0)';
+                    }, i * 100);
+                }
+            }
+            
+            currentVisibleProducts += productsToShow;
+            
+            // Smooth scroll to new products after animation
+            setTimeout(() => {
+                const firstNewProduct = hiddenProducts[0];
+                if (firstNewProduct) {
+                    firstNewProduct.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                }
+            }, productsToShow * 100 + 300);
+            
+            // Hide button if all products are shown
+            if (currentVisibleProducts >= totalProducts) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+
+        function changeLanguage(lang) {
+            if (lang === 'vi') {
+                // Vietnamese content
+                document.getElementById('shipping-text').textContent = 'Miễn phí vận chuyển cho đơn hàng từ 500.000₫';
+                document.getElementById('support-text').textContent = 'Hỗ trợ';
+            } else if (lang === 'en') {
+                // English content
+                document.getElementById('shipping-text').textContent = 'Free shipping for orders from $50';
+                document.getElementById('support-text').textContent = 'Support';
+            }
+        }
+        
+        // Force update cart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Nuoc-hoa page DOMContentLoaded - checking cart sync...');
+            setTimeout(() => {
+                if (typeof forceUpdateCart === 'function') {
+                    console.log('Calling forceUpdateCart from nuoc-hoa page...');
+                    forceUpdateCart();
+                } else {
+                    console.error('forceUpdateCart function not found!');
+                }
+            }, 200);
+        });
+        
+        // Update cart when page becomes visible
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                setTimeout(() => {
+                    if (typeof updateCartDisplay === 'function') {
+                        updateCartDisplay();
+                    }
+                    if (typeof updateCartCount === 'function') {
+                        updateCartCount();
+                    }
+                }, 100);
+            }
+        });
+        
+        // Update cart when page loads (backup)
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                if (typeof updateCartDisplay === 'function') {
+                    updateCartDisplay();
+                }
+                if (typeof updateCartCount === 'function') {
+                    updateCartCount();
+                }
+            }, 300);
+        });
+    </script>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 cart-modal">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-luxury-black">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

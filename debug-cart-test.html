@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Cart Test - Lâm Thúy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="global-cart.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">Debug Cart Test</h1>
+        
+        <!-- Cart Info -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-semibold mb-4">Cart Status</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p><strong>Cart Count:</strong> <span id="cart-count-display">0</span></p>
+                    <p><strong>Cart Items:</strong> <span id="cart-items-count">0</span></p>
+                </div>
+                <div>
+                    <button onclick="openCart()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Open Cart
+                    </button>
+                    <button onclick="clearCart()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2">
+                        Clear Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Products -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Clothing Product -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold mb-2">Áo sơ mi (ID: 1)</h3>
+                <p class="text-gray-600 mb-4">2,500,000₫</p>
+                <button onclick="addToCart(1)" class="w-full bg-luxury-gold text-luxury-black py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+            <!-- Footwear Product -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold mb-2">Giày sneaker (ID: 101)</h3>
+                <p class="text-gray-600 mb-4">3,500,000₫</p>
+                <button onclick="addToCart(101)" class="w-full bg-luxury-gold text-luxury-black py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+            <!-- Perfume Product -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold mb-2">Nước hoa nam (ID: 201)</h3>
+                <p class="text-gray-600 mb-4">1,800,000₫</p>
+                <button onclick="addToCart(201)" class="w-full bg-luxury-gold text-luxury-black py-2 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                    Thêm vào giỏ
+                </button>
+            </div>
+        </div>
+
+        <!-- Debug Info -->
+        <div class="bg-gray-100 p-6 rounded-lg mt-8">
+            <h3 class="text-lg font-semibold mb-4">Debug Information</h3>
+            <div id="debug-info" class="text-sm font-mono">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-luxury-black">Giỏ hàng của bạn</h2>
+                <button onclick="closeCart()" class="text-gray-400 hover:text-luxury-black transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Content -->
+            <div class="p-6 overflow-y-auto max-h-96">
+                <div id="empty-cart" class="text-center py-12">
+                    <i class="fas fa-shopping-bag text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Giỏ hàng trống</h3>
+                    <p class="text-gray-500">Hãy thêm sản phẩm vào giỏ hàng của bạn</p>
+                </div>
+                <div id="cart-items" class="space-y-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="p-6 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Tổng cộng:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-luxury-gold">0₫</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="closeCart()" class="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition-colors">
+                        Tiếp tục mua sắm
+                    </button>
+                    <button onclick="openMessengerWithCart()" class="flex-1 bg-luxury-gold text-luxury-black py-3 rounded-lg font-semibold hover:bg-yellow-600 transition-colors">
+                        Đặt hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update debug info
+        function updateDebugInfo() {
+            const debugInfo = document.getElementById('debug-info');
+            const cartCountDisplay = document.getElementById('cart-count-display');
+            const cartItemsCount = document.getElementById('cart-items-count');
+            
+            if (typeof cart !== 'undefined') {
+                const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountDisplay.textContent = totalQuantity;
+                cartItemsCount.textContent = cart.length;
+                
+                debugInfo.innerHTML = `
+                    <p><strong>Cart Array:</strong> ${JSON.stringify(cart, null, 2)}</p>
+                    <p><strong>Cart Count:</strong> ${totalQuantity}</p>
+                    <p><strong>Cart Items:</strong> ${cart.length}</p>
+                    <p><strong>LocalStorage:</strong> ${localStorage.getItem('h2wear_cart') || 'null'}</p>
+                `;
+            } else {
+                debugInfo.innerHTML = '<p>Cart not initialized</p>';
+            }
+        }
+
+        // Update debug info every second
+        setInterval(updateDebugInfo, 1000);
+
+        // Initial update
+        setTimeout(updateDebugInfo, 1000);
+    </script>
+</body>
+</html>

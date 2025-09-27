@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Quick</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Test Quick</h1>
+    
+    <button onclick="testAdd(101)" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">
+        Test Giày (101)
+    </button>
+    
+    <button onclick="testAdd(201)" class="bg-green-500 text-white px-4 py-2 rounded mr-2">
+        Test Nước hoa (201)
+    </button>
+    
+    <button onclick="openCart()" class="bg-yellow-500 text-white px-4 py-2 rounded">
+        Mở giỏ hàng
+    </button>
+    
+    <div id="status" class="mt-4 p-4 bg-gray-100 rounded">
+        <p>Status: <span id="status-text">Loading...</span></p>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div class="p-6">
+                <h2 class="text-xl font-bold mb-4">Giỏ hàng</h2>
+                <div id="empty-cart" class="text-center py-8">
+                    <p>Giỏ hàng trống</p>
+                </div>
+                <div id="cart-items" class="space-y-2">
+                    <!-- Items here -->
+                </div>
+                <div class="mt-4 pt-4 border-t">
+                    <p>Tổng: <span id="cart-total">0₫</span></p>
+                </div>
+                <button onclick="closeCart()" class="mt-4 w-full bg-gray-500 text-white py-2 rounded">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testAdd(productId) {
+            console.log('Testing addToCart with ID:', productId);
+            if (typeof addToCart === 'function') {
+                addToCart(productId);
+                document.getElementById('status-text').textContent = 'Added product ' + productId;
+            } else {
+                document.getElementById('status-text').textContent = 'addToCart function not found!';
+            }
+        }
+        
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+        
+        window.addEventListener('load', function() {
+            document.getElementById('status-text').textContent = 'Page loaded. addToCart: ' + typeof addToCart;
+        });
+    </script>
+    
+    <script src="global-cart.js"></script>
+</body>
+</html>
